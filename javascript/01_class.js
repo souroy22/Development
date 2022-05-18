@@ -79,3 +79,14 @@ function getMultiUserInput() {
 // 2nd month backend
 // 3rd month Prject MERN
 // DSA + Subjective Topics (3 months)
+
+// Task
+/*
+1) Find max and min element from an array
+Input: [9, 1, 3, 6, 4, 10, 13, 7]
+Output: max -> 13, min -> 1
+
+2) find element from an array
+Input: [2, 3, 10, 6, 9, 7, 11, 13], element: 10
+Output: 2 (index of the element if exist, if not then print -1)
+*/
