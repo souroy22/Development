@@ -59,7 +59,7 @@ let obj2 = {
 
 // console.log(obj1 === obj2);
 
-let arr3 = ["sandhya", "sourav", "abhi", "ududi", "ddid"]
+let arr3 = [ "sourav", "abhi", "ududi", "ddid"]
 
 // for(let i=0;i<arr3.length;i++){
 //      if(arr3[i] === 'abhi'){
@@ -78,3 +78,19 @@ function addInRandomIndex(arr, indx, value) {
 arr3 = addInRandomIndex(arr3, indx, "ddddd");
 
 console.log(arr3);
+
+/*
+1) Find duplicate element. Given an array i.e. [1, 3, 2, 4, 5, 3, 9, -1, 10]. Output: 3
+2) Find pair of two number whose sum is given sum.
+Input: [4, 9, 10, 13, 15, 2, 5], target_sum: 7
+Output: {2, 5}
+
+******************** ONLY FOR USHA *******************************
+1) Calculate the total sum
+Input: [1, 4, 5, 9, 2]
+Output: 21 (1 + 4 + 5 + 9 + 2)
+
+2) Print all negative elements
+Input: [1, 3, -2, 4, -3, -6, -7, -6]
+Output: -2, -3, -6, -7, -6
+*/
