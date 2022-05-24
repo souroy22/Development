@@ -77,7 +77,7 @@ function addInRandomIndex(arr, indx, value) {
 
 arr3 = addInRandomIndex(arr3, indx, "ddddd");
 
-console.log(arr3);
+// console.log(arr3);
 
 /*
 1) Find duplicate element. Given an array i.e. [1, 3, 2, 4, 5, 3, 9, -1, 10]. Output: 3
@@ -94,3 +94,10 @@ Output: 21 (1 + 4 + 5 + 9 + 2)
 Input: [1, 3, -2, 4, -3, -6, -7, -6]
 Output: -2, -3, -6, -7, -6
 */
+
+let arr = [1, 3, -2, 4, -3, -6, -7, -6];
+ for(let i=0; i<arr.length; i++){
+     if(arr[i] < 0){
+          console.log(arr[i]);
+     }
+}
