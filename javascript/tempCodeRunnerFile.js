@@ -1,1 +1,1 @@
-arr2
+console.log(this);
