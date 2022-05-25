@@ -53,6 +53,59 @@ const isUserLoggedIn = true;
 // }, 1000);
 
 
+// ======================================     Task     ================================================
+/*
+Q1) Try to find out the output
+function counter(a, b){
+     return {
+          up() {
+               a += b;
+               console.log(a);
+          },
+          down() {
+               a -= b;
+               console.log(a);
+          }
+     }
+}
+let c = counter();
+c.up();
+c.down();
+
+---------------------------------------------------------
+
+Q2) Try to find out the output
+
+let a = true;
+let b = 0;
+
+setTimeout(() => {
+     a = false;
+}, 2000);
+
+while(a) {
+     console.log(b++);
+}
+
+Q3) Find out the output
+
+let obj1 = {a: 10, b: 11}
+
+let obj2 = Object.create(obj1);
+
+console.log(obj2);
+console.log(obj1);
+
+obj2.a++;
+obj1.a = 44;
+
+console.log(obj2.a);
+
+*/
+
+
+
+
 
 
 
