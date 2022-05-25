@@ -4,23 +4,23 @@
 Q1) Write the Output
 var a = 10;
 
-console.log(a);
+console.log(a); // 10
 
 function task(){
      var a = 10;
-     console.log(a);
+     console.log(a); // 10
      
      if(true){
           var a = 30;
-          console.log(a);
+          console.log(a); //30
      }
 
-     console.log(a);
+     console.log(a); // 30
 }
 
 task();
 
-console.log(a);
+console.log(a); //10
 */
 
 /* 
@@ -38,7 +38,8 @@ fn();
 /* 
 Q3) Guess the output.
 
-fn();
+console.log(fn); // undefined
+fn()
 var fn = function (a){
      console.log(b);
      var b = a + 2;
@@ -69,3 +70,23 @@ Input: str: "memory", products: ["computer", "mobile", "guiter", "book", "laptop
 Output: Sorry no such product found!
 
 */
+
+
+let products = ["computer", "mobile", "guiter", "book", "laptop", "flower"];
+let str = "lap";
+let t = false;
+for(let i=0;i<products.length;i++){
+     let temp = products[i].includes(str);
+     if(temp){
+          t = true;
+          console.log("Yes");
+          break;
+     }
+}
+
+if(!t){
+     console.log("No");
+}
+
+
+// console.log(str2.includes(str));
