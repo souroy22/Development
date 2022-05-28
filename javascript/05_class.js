@@ -185,6 +185,11 @@ function abc() {
 
 abc();
 
+Q7) Remove the falsy values from an array (Read truthy and falsy concepts in JS)
+Example:
+Input: [1, "Hello", true, false, "OK", NaN, 0, 44, undefined, "Friend", "", null, "apple"];
+Output: [1, "Hello", true, "OK", 44, "Friend", "apple"]
+
 */
 
 
