@@ -173,7 +173,17 @@ function eventLoopFn() {
      a++;
 }
 
-eventLoopFn();
+Q6) Print 1, 2, 3, 4, 5 by modifying the code without using let
+
+function abc() {
+     for(var i=1;i<=5;i++){
+          setTimeout(function () {
+               console.log(i);
+          }, i * 1000);
+     }
+}
+
+abc();
 
 */
 
