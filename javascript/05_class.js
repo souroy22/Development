@@ -153,7 +153,7 @@ let obj = {
      d: function() {
           this.c();
           printThis();
-          console.log(this.c === printThis);
+          console.log(this.c == printThis);
      }
 }
 
