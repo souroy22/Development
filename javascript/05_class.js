@@ -195,6 +195,11 @@ console.log(!!true);
 console.log(!!"Hello");
 console.log(!!false);
 
+Q9) Flatten the array with using JS in-build method (you may use google)
+Example:
+Input: ["Hello", [1, "Hi"], 100, [200, 22], 33, true, [false, NaN], undefined]
+Output: ["Hello", 1, "Hi", 100, 200, 22, 33, true, false, NaN, undefined]
+
 */
 
 
