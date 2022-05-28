@@ -190,6 +190,11 @@ Example:
 Input: [1, "Hello", true, false, "OK", NaN, 0, 44, undefined, "Friend", "", null, "apple"];
 Output: [1, "Hello", true, "OK", 44, "Friend", "apple"]
 
+Q8) Guess the output
+console.log(!!true);
+console.log(!!"Hello");
+console.log(!!false);
+
 */
 
 
