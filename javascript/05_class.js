@@ -163,4 +163,18 @@ function printThis(){
 
 obj.d();
 
+Q5) Find out the output and explain why
+
+function eventLoopFn() {
+     let a = 10;
+     setTimeout(() => {
+          console.log(a);
+     });
+     a++;
+}
+
+eventLoopFn();
+
 */
+
+
