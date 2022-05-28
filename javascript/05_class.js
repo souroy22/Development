@@ -197,7 +197,12 @@ console.log(!!false);
 
 Q9) Flatten the array with using JS in-build method (you may use google)
 Example:
+// single level
 Input: ["Hello", [1, "Hi"], 100, [200, 22], 33, true, [false, NaN], undefined]
+Output: ["Hello", 1, "Hi", 100, 200, 22, 33, true, false, NaN, undefined]
+
+// multi level
+Input: ["Hello", [1, "Hi"], 100, [200, 22, ["Abhi", "Harshit", ["Usha", "Sandhiya"]]], 33, true, [false, NaN], undefined]
 Output: ["Hello", 1, "Hi", 100, 200, 22, 33, true, false, NaN, undefined]
 
 */
