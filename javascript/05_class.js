@@ -93,7 +93,7 @@ let obj = {
 }
 
 let newObj = obj.c();
-newObj.newobj();
+// newObj.newobj();
 // console.log(obj.a);
 
 
@@ -205,6 +205,38 @@ Output: ["Hello", 1, "Hi", 100, 200, 22, 33, true, false, NaN, undefined]
 Input: ["Hello", [1, "Hi"], 100, [200, 22, ["Abhi", "Harshit", ["Usha", "Sandhiya"]]], 33, true, [false, NaN], undefined]
 Output: ["Hello", 1, "Hi", 100, 200, 22, 33, true, false, NaN, undefined]
 
+
+Q10) Guess the output in every case
+
+CASE:1
+function outer(){
+     var a = 10;
+     function inner(){
+          console.log(a);
+     }
+     return inner;
+}
+
+outer()();
+
+CASE:2
+function outer(){
+     function inner(){
+          console.log(a);
+     }
+     var a = 10;
+     return inner;
+}
+outer()();
+
+CASE:3
+function outer(){
+     function inner(){
+          console.log(a);
+     }
+     let a = 10;
+     return inner;
+}
+outer()();
+
 */
-
-
