@@ -5,8 +5,9 @@
 1) In a method, this refers to the owner of the object;
 let obj = {
      a: {
-          b: function(){
-               return this; // will return object a
+          c: 12,
+          b: function (){
+               console.log(this); // will return object a
           }
      }
 }
@@ -28,7 +29,7 @@ function fn(){
 
 5) In a event, this refers to the element who received the event
 <div>
-     <button onClick={console.log(this)}>
+     <button onClick={this.styel.backgroundColor = red}>
           Submit
      </button>
 </div>
