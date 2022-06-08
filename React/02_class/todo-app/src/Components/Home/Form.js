@@ -13,7 +13,7 @@ const Form = ({ newTask, setNewTask, taskList, setTaskList }) => {
        taskList.push(newTask);
        setTaskList(taskList);
        console.log("taskList", taskList);
-     //   setNewTask({});
+       setNewTask({});
   }
 
   return (
