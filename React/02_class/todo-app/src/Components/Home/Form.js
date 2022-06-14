@@ -1,7 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const Form = ({ newTask, setNewTask, taskList, setTaskList }) => {
+const Form = ({
+  newTask,
+  setNewTask,
+  taskList,
+  setTaskList,
+  shouldUpdate,
+  setUpdateTaskID,
+}) => {
   const onChangeFn = (event) => {
+    debugger;
     const value = event.target.value;
     const name = event.target.name;
     newTask[name] = value;
@@ -9,12 +17,27 @@ const Form = ({ newTask, setNewTask, taskList, setTaskList }) => {
   };
 
   const onFormSubmit = () => {
-       newTask['id'] = Date.now();
-       taskList.push(newTask);
-       setTaskList(taskList);
-       console.log("taskList", taskList);
-       setNewTask({});
-  }
+    if (shouldUpdate) {
+      let taskName = document.getElementsByName("taskName")[0].value;
+      let startDate = document.getElementsByName("startDate")[0].value;
+      let endDate = document.getElementsByName("endDate")[0].value;
+      let description = document.getElementsByName("description")[1].value;
+
+    } else {
+      newTask["id"] = Date.now();
+      taskList.push(newTask);
+      setTaskList(taskList);
+      setNewTask({});
+    }
+    clearForm();
+  };
+
+  const clearForm = () => {
+    document.getElementsByName("taskName")[0].value = "";
+    document.getElementsByName("startDate")[0].value = "";
+    document.getElementsByName("endDate")[0].value = "";
+    document.getElementsByName("description")[1].value = "";
+  };
 
   return (
     <div>
@@ -33,7 +56,7 @@ const Form = ({ newTask, setNewTask, taskList, setTaskList }) => {
         onChange={onChangeFn}
       />
       <input
-        name="endDateDate"
+        name="endDate"
         type="date"
         style={{ marginBottom: "10px" }}
         onChange={onChangeFn}
@@ -47,7 +70,9 @@ const Form = ({ newTask, setNewTask, taskList, setTaskList }) => {
         onChange={onChangeFn}
       />
       <br />
-      <button onClick={onFormSubmit}>Submit</button>
+      <button onClick={onFormSubmit}>
+        {shouldUpdate ? "Update" : "Submit"}
+      </button>
     </div>
   );
 };
