@@ -6,10 +6,11 @@ const Form = ({
   taskList,
   setTaskList,
   shouldUpdate,
-  setUpdateTaskID,
+  setUpdateTaskIndx,
+  setShouldUpdate,
+  updateTaskIndx
 }) => {
   const onChangeFn = (event) => {
-    debugger;
     const value = event.target.value;
     const name = event.target.name;
     newTask[name] = value;
@@ -22,7 +23,11 @@ const Form = ({
       let startDate = document.getElementsByName("startDate")[0].value;
       let endDate = document.getElementsByName("endDate")[0].value;
       let description = document.getElementsByName("description")[1].value;
-
+      const id = taskList[updateTaskIndx].id;
+      const newTaskList = taskList;
+      newTaskList[updateTaskIndx] = {taskName, startDate, endDate, description, id};
+      setTaskList(newTaskList);
+      setShouldUpdate(false);
     } else {
       newTask["id"] = Date.now();
       taskList.push(newTask);
@@ -46,7 +51,7 @@ const Form = ({
         placeholder="enter task name"
         type="text"
         style={{ marginBottom: "10px", marginTop: "10px" }}
-        onChange={onChangeFn}
+        onChange={onChangeFn}    
       />
       <br />
       <input

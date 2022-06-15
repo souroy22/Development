@@ -11,7 +11,11 @@ const Task = ({ task, onDelete, onUpdate }) => {
         border: "1px solid red",
         padding: "10px",
         margin: "10px",
-        alignContent: 'space-between'
+        alignContent: 'space-between',
+        justifyContent: 'space-around',
+        width: '500px',
+        margin: 'auto',
+        marginTop: '20px'
       }}
     >
     <h5>{task.taskName}</h5>
