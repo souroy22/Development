@@ -1,0 +1,9 @@
+.products-section {
+     display: flex;
+     justify-content: space-between;
+     flex-direction: row;
+     width: 90%;
+     margin: auto;
+     margin-top: 70px;
+     flex-wrap: wrap;
+}
