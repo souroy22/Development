@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import axios from "axios";
-import RouterComp from "./RouterComp";
+import Products from "./components/Products/views/Products";
+import Cart from "./components/Cart/views/Cart";
+import { Routes, Route } from "react-router-dom";
 
 const App = () => {
   const [data, setProducts] = useState([]);
@@ -32,7 +34,14 @@ const App = () => {
 
   return (
     <div className="App">
-      <RouterComp products={data} saveInCart={saveInCart} cart={cart} />
+      <Routes>
+        <Route
+          path="/"
+          exact
+          element={<Products products={data} saveInCart={saveInCart} />}
+        />
+        <Route path="/cart" exact element={<Cart cart={cart} />} />
+      </Routes>
     </div>
   );
 };
