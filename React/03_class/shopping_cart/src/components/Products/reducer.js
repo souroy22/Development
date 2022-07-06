@@ -21,6 +21,17 @@ export const product = (state = initialState, action) => {
         return { ...state, products: state.products };
       }
 
+     case 'SET_FILTERED_DATA':
+          state.products = state.products.filter(product => {
+               if(product.title.toLowerCase().includes(action.payload.toLowerCase())){
+                    return product;
+               }
+               else if(product.description.toLowerCase().includes(action.payload.toLowerCase())){
+                    return product;
+               }
+          });
+          return {...state, products: state.products};
+
     default:
       return state;
   }

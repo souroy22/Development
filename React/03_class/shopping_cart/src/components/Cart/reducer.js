@@ -14,6 +14,22 @@ export const cart = (state=initialState, action) => {
                }
                data['count'] = 1;
                return {...state, cartProducts: [...state.cartProducts, data]};
+
+          case 'INCREASE_COUNT':
+               const index = state.cartProducts.findIndex(product => product.id === action.id);
+               if(index >= 0){
+                    state.cartProducts[index].count += 1;
+                    return {...state, cartProducts: state.cartProducts};
+               }
+          case 'DECREASE_COUNT':
+               const indexx = state.cartProducts.findIndex(product => product.id === action.id);
+               if(indexx >= 0 && state.cartProducts[indexx].count === 1){
+                    state.cartProducts = state.cartProducts.filter(product => product.id !== action.id);
+               }
+               else if(indexx >= 0){
+                    state.cartProducts[indexx].count -= 1;
+               }
+               return {...state, cartProducts: state.cartProducts};
      
           default:
                return state;

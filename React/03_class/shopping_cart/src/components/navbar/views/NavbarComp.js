@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -13,11 +14,15 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import "../styles/Navbar.css";
 import { Link, useLocation } from "react-router-dom";
+import { filterData, setProducts } from "../../Products/action-creator";
 
 const NavbarComp = () => {
   const { cartProducts } = useSelector((state) => state.cart);
   const location = useLocation();
-  
+
+  const [searchValue, setSearchValue] = useState("");
+
+  const dispatch = useDispatch();
   return (
     <Navbar bg="light" expand="lg" fixed="top">
       <Container
@@ -58,8 +63,26 @@ const NavbarComp = () => {
                   placeholder="Search"
                   className="me-2"
                   aria-label="Search"
+                  onChange={(event) => {
+                    if (event.target.value === "ENTER" && searchValue.length) {
+                      dispatch(filterData(searchValue));
+                    }
+                    setSearchValue(event.target.value);
+                  }}
                 />
-                <Button variant="outline-success">Search</Button>
+                <Button
+                  onClick={(event) => {
+                    event.preventDefault();
+                    if (searchValue.length) {
+                      dispatch(filterData(searchValue));
+                    }else{
+                         dispatch(setProducts());
+                    }
+                  }}
+                  variant="outline-success"
+                >
+                  Search
+                </Button>
               </Form>
               <Link to="/cart">
                 <FontAwesomeIcon

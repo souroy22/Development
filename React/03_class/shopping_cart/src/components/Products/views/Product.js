@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { addToCart } from "../../Cart/action-creator";
+import { addToCart, decreaseCounter, increaseCounter } from "../../Cart/action-creator";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -85,6 +85,29 @@ const Product = ({ product, saveInCart, isCartPage }) => {
             onClick={() => dispatch(removeFromWishList(product.id))}
           >
             Remove from wishlist
+          </Button>
+        </>
+      )}
+      {location.pathname === "/cart" && (
+        <>
+          <Button
+            variant="contained"
+            color="success"
+            size="large"
+            style={{ backgroundColor: "#E21717", fontSize: '24px', fontWeight: 'bolder' }}
+            onClick={() => dispatch(decreaseCounter(product.id))}
+          >
+            -
+          </Button>
+          <span className="cart-counter">{product.count}</span>
+          <Button
+            variant="contained"
+            color="success"
+            size="large"
+            style={{ backgroundColor: "#66AD47", fontSize: '24px', fontWeight: 'bolder' }}
+            onClick={() => dispatch(increaseCounter(product.id))}
+          >
+            +
           </Button>
         </>
       )}
