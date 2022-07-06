@@ -12,7 +12,9 @@ const Products = ({ saveInCart }) => {
   const { products } = useSelector((state) => state.product);
 
   useEffect(() => {
-    dispatch(setProducts());
+    if(!products.length){
+      dispatch(setProducts());
+    }
   }, []);
 
   return (
@@ -20,8 +22,8 @@ const Products = ({ saveInCart }) => {
       <Link to="/cart">Go to Cart</Link>
       {!products || !products.length ? (
         <div className="product-section">
-          {Array.from(new Array(20)).map(() => (
-            <CardSkeleton />
+          {Array.from(new Array(20)).map((val, index) => (
+            <CardSkeleton key={index} />
           ))}
         </div>
       ) : (

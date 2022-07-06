@@ -4,6 +4,7 @@ import Products from "./components/Products/views/Products";
 import Cart from "./components/Cart/views/Cart";
 import { Routes, Route } from "react-router-dom";
 import NavbarComp from "./components/navbar/views/NavbarComp";
+import WishList from "./components/wishlist/views/WishList";
 
 const App = () => {
   const [data, setProducts] = useState([]);
@@ -34,6 +35,7 @@ const App = () => {
           element={<Products saveInCart={saveInCart} />}
         />
         <Route path="/cart" exact element={<Cart cart={cart} />} />
+        <Route path="/wishlist" exact element={<WishList />} />
       </Routes>
     </div>
   );
