@@ -1,23 +1,45 @@
 import React from "react";
+import { addToCart } from "../../Cart/action-creator";
+import { useDispatch, useSelector } from "react-redux";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 
-const Product = ({ product, saveInCart, cartRoute }) => {
+const Product = ({ product, saveInCart, cartRoute, isCartPage }) => {
+  const dispatch = useDispatch();
   return (
-    <div
-      style={{
-        width: "300px",
-        height: "600px",
-        border: "1px solid red",
-        margin: "10px",
-      }}
-    >
-      <img src={product.image} style={{ width: "300px", height: "150px" }} />
-      <h2>Title: {product.title}</h2>
-      <h4>Description: {product.description}</h4>
-      <h4>Category: {product.category}</h4>
-      <h4>Price: {product.price}</h4>
-      {cartRoute && <button>{product.count}</button>}
-      <button onClick={() => saveInCart(product)}>Add to cart</button>
-    </div>
+    <Card sx={{ width: 345, margin: "10px", height: "370px" }}>
+      <CardMedia
+        component="img"
+        alt="green iguana"
+        height="140"
+        image={product.image}
+        style={{ objectFit: "scale-down" }}
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          {product.title.length > 30
+            ? product.title.slice(0, 30) + " ..."
+            : product.title}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          {product.description.length > 150
+            ? product.description.slice(0, 100) + " ..."
+            : product.description}
+        </Typography>
+      </CardContent>
+      <CardActions style={{display: 'flex', justifyContent: 'space-around', bottom: '20px'}}>
+        <Button variant="contained" size="large">
+          wishlist
+        </Button>
+        <Button variant="contained" color="success" size="large" onClick={() => dispatch(addToCart(product))}>
+          Add to cart
+        </Button>
+      </CardActions>
+    </Card>
   );
 };
 
