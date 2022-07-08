@@ -1,10 +1,28 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Product from "../../Products/views/Product";
 import { useDispatch, useSelector } from "react-redux";
 import "../styles/wishlist.css";
+import { useNavigate } from "react-router-dom";
 
 const WishList = () => {
-  const { products } = useSelector((state) => state.product);
+  const { products, wishlistProductsCount } = useSelector(
+    (state) => state.product
+  );
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if(!products.length)
+    navigate('/');
+  }, []);
+
+  if (wishlistProductsCount == 0) {
+    return (
+      <h3 style={{ color: "gray", marginTop: "300px" }}>
+        Sorry! No product is added in the wishlist :(
+      </h3>
+    );
+  }
   return (
     <div className="wishlist-section">
       {products.map((product) => {

@@ -17,6 +17,8 @@ const Product = ({ product, saveInCart, isCartPage }) => {
 
   const location = useLocation();
 
+  const { cartProducts } = useSelector((state) => state.cart);
+
   const addOrRemove = () => {
     if (!product.isWishListed) {
       dispatch(addToWishList(product.id));
@@ -27,8 +29,14 @@ const Product = ({ product, saveInCart, isCartPage }) => {
   };
 
   const dispatch = useDispatch();
+
+  const isAddedInCart = (id) => {
+    const indx = cartProducts.findIndex(prod => prod.id === id);
+    return indx >= 0;
+  }
+
   return (
-    <Card sx={{ width: 345, margin: "10px", height: "370px" }}>
+    <Card sx={{ width: 365, margin: "10px", height: "370px" }}>
       <CardMedia
         component="img"
         alt="green iguana"
@@ -60,18 +68,18 @@ const Product = ({ product, saveInCart, isCartPage }) => {
             onClick={addOrRemove}
             variant="contained"
             size="large"
-            style={{ backgroundColor: "#DE4839" }}
+            style={{ backgroundColor: product.isWishListed ? "#5A20CB" : "#DE4839" }}
           >
             <FontAwesomeIcon style={{ marginRight: "5px" }} icon={faHeart} />
             {product.isWishListed ? "wishlisted" : "wishlist"}
           </Button>
           <Button
             variant="contained"
-            color="success"
+            style={{backgroundColor: isAddedInCart(product.id) ? '#758283' : '#3DBE29'}}
             size="large"
             onClick={() => dispatch(addToCart(product))}
           >
-            Add to cart
+            {isAddedInCart(product.id) ? 'Added to cart' : 'Add to cart'}
           </Button>
         </CardActions>
       )}

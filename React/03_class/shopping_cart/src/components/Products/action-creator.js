@@ -43,3 +43,10 @@ export const filterData = (value) => (dispatch) => {
           payload: value
      })
 }
+
+export const shouldShowFilteredProd = (show) => (dispatch) => {
+  dispatch({
+    type: 'SHOULD_SHOW_FILTERED_PRODUCTS',
+    payload: show
+  })
+}

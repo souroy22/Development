@@ -1,10 +1,21 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Product from "../../Products/views/Product";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import "../styles/cart.css";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
+
   const { cartProducts } = useSelector((state) => state.cart);
+  const navigate = useNavigate();
+  const { products } =
+    useSelector((state) => state.product);
+
+  useEffect(() => {
+    if(!products.length)
+    navigate('/');
+  }, []);
+
   if (!cartProducts.length) {
     return (<h3 style={{ color: "gray", marginTop: "300px" }}>
       Sorry! No product is added in the cart :(

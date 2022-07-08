@@ -14,7 +14,11 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import "../styles/Navbar.css";
 import { Link, useLocation } from "react-router-dom";
-import { filterData, setProducts } from "../../Products/action-creator";
+import {
+  filterData,
+  setProducts,
+  shouldShowFilteredProd,
+} from "../../Products/action-creator";
 
 const NavbarComp = () => {
   const { cartProducts } = useSelector((state) => state.cart);
@@ -23,48 +27,69 @@ const NavbarComp = () => {
   const [searchValue, setSearchValue] = useState("");
 
   const dispatch = useDispatch();
+
+  const { products, shouldShowFilteredProducts, filteredProducts } =
+    useSelector((state) => state.product);
+
+  const handleTitleClick = () => {
+    if (shouldShowFilteredProducts) {
+      dispatch(shouldShowFilteredProd(false));
+      dispatch(setProducts());
+    }
+  };
+
   return (
     <Navbar bg="light" expand="lg" fixed="top">
       <Container
         fluid
         style={{ display: "flex", justifyContent: "space-between" }}
       >
-        <Navbar.Brand>Shoppy</Navbar.Brand>
+        <Navbar.Brand onClick={handleTitleClick}>Shoppy</Navbar.Brand>
         <div
           style={{
             display: "flex",
             width: "600px",
             justifyContent: "space-between",
             marginRight: "20px",
+            flexWrap: "wrap",
           }}
         >
           {location.pathname === "/" ? (
             <>
-              <Link to="wishlist">
-                <Button
-                  variant="contained"
-                  style={{
-                    fontSize: "20px",
-                    fontWeight: "bolder",
-                    width: "137px",
-                    color: "#D82E2F",
-                  }}
-                >
-                  <FontAwesomeIcon
-                    icon={faHeartCircleCheck}
-                    style={{ width: "30px", height: "30px" }}
-                  />
-                  Wishlist
-                </Button>
-              </Link>
-              <Form className="d-flex">
+                <Link to="wishlist">
+                  <Button
+                    variant="contained"
+                    style={{
+                      fontSize: "20px",
+                      fontWeight: "bolder",
+                      width: "137px",
+                      color: "#D82E2F",
+                    }}
+                  >
+                    <FontAwesomeIcon
+                      icon={faHeartCircleCheck}
+                      style={{ width: "30px", height: "30px" }}
+                    />
+                    Wishlist
+                  </Button>
+                </Link>
+              <Form
+                className="d-flex"
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  dispatch(shouldShowFilteredProd(true));
+                  dispatch(filterData(searchValue));
+                }}
+              >
                 <Form.Control
                   type="search"
                   placeholder="Search"
                   className="me-2"
                   aria-label="Search"
+                  value={searchValue}
                   onChange={(event) => {
                     if (event.target.value === "ENTER" && searchValue.length) {
+                      dispatch(shouldShowFilteredProd(true));
                       dispatch(filterData(searchValue));
                     }
                     setSearchValue(event.target.value);
@@ -75,8 +100,10 @@ const NavbarComp = () => {
                     event.preventDefault();
                     if (searchValue.length) {
                       dispatch(filterData(searchValue));
-                    }else{
-                         dispatch(setProducts());
+                      dispatch(shouldShowFilteredProd(true));
+                    } else {
+                      dispatch(setProducts());
+                      dispatch(shouldShowFilteredProd(false));
                     }
                   }}
                   variant="outline-success"

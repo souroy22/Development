@@ -9,13 +9,22 @@ import CardSkeleton from "../../utility/common/Skeleton";
 const Products = ({ saveInCart }) => {
   const dispatch = useDispatch();
 
-  const { products } = useSelector((state) => state.product);
+  const { products, shouldShowFilteredProducts, filteredProducts } =
+    useSelector((state) => state.product);
 
   useEffect(() => {
-    if(!products.length){
+    if (!products.length) {
       dispatch(setProducts());
     }
   }, []);
+
+  if (shouldShowFilteredProducts && !filteredProducts.length) {
+    return(
+      <h3 style={{ color: "gray", marginTop: "300px" }}>
+        Sorry! No product found :(
+      </h3>
+    );
+  }
 
   return (
     <>
@@ -28,13 +37,21 @@ const Products = ({ saveInCart }) => {
         </div>
       ) : (
         <div className="product-section">
-          {products.map((product) => (
-            <Product
-              key={product.id}
-              product={product}
-              saveInCart={saveInCart}
-            />
-          ))}
+          {shouldShowFilteredProducts
+            ? filteredProducts.map((product) => (
+                <Product
+                  key={product.id}
+                  product={product}
+                  saveInCart={saveInCart}
+                />
+              ))
+            : products.map((product) => (
+                <Product
+                  key={product.id}
+                  product={product}
+                  saveInCart={saveInCart}
+                />
+              ))}
         </div>
       )}
     </>
