@@ -16,7 +16,7 @@ import { faHeart, faIndianRupeeSign } from "@fortawesome/free-solid-svg-icons";
 import { addToWishList, removeFromWishList } from "../action-creator";
 import { useLocation } from "react-router-dom";
 
-const Product = ({ product, saveInCart, isCartPage }) => {
+const Product = ({ product, saveInCart, isCartPage, setReload, reload }) => {
   const [isAdded, setIsAdded] = useState(false);
 
   const location = useLocation();
@@ -48,7 +48,7 @@ const Product = ({ product, saveInCart, isCartPage }) => {
         image={product.image}
         style={{ objectFit: "scale-down" }}
       />
-      <CardContent style={{ height: "190px" }}>
+      <CardContent style={{ height: "200px" }}>
         <Typography gutterBottom variant="h5" component="div">
           {product.title.length > 30
             ? product.title.slice(0, 30) + " ..."
@@ -59,7 +59,11 @@ const Product = ({ product, saveInCart, isCartPage }) => {
             ? product.description.slice(0, 100) + " ..."
             : product.description}
         </Typography>
-        <Typography variant="h5" color="text.secondary" style={{ marginTop: "5px" }}>
+        <Typography
+          variant="h5"
+          color="text.secondary"
+          style={{ marginTop: "5px" }}
+        >
           Price:
           <FontAwesomeIcon
             style={{ marginRight: "5px" }}
@@ -122,10 +126,13 @@ const Product = ({ product, saveInCart, isCartPage }) => {
             size="large"
             style={{
               backgroundColor: "#E21717",
-              fontSize: "24px",
+              fontSize: "22px",
               fontWeight: "bolder",
             }}
-            onClick={() => dispatch(decreaseCounter(product.id))}
+            onClick={() => {
+              setReload(!reload);
+              dispatch(decreaseCounter(product.id));
+            }}
           >
             -
           </Button>
@@ -136,10 +143,13 @@ const Product = ({ product, saveInCart, isCartPage }) => {
             size="large"
             style={{
               backgroundColor: "#66AD47",
-              fontSize: "24px",
+              fontSize: "22px",
               fontWeight: "bolder",
             }}
-            onClick={() => dispatch(increaseCounter(product.id))}
+            onClick={() => {
+              dispatch(increaseCounter(product.id));
+              setReload(!reload);
+            }}
           >
             +
           </Button>
