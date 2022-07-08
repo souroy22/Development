@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import Product from "../../Products/views/Product";
 import { useSelector } from "react-redux";
 import "../styles/cart.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Buynow from "../../buynow/views/Buynow";
+import Button from "@mui/material/Button";
 
 const Cart = () => {
   const { cartProducts } = useSelector((state) => state.cart);
@@ -17,9 +18,17 @@ const Cart = () => {
 
   if (!cartProducts.length) {
     return (
-      <h3 style={{ color: "gray", marginTop: "300px" }}>
-        Sorry! No product is added in the cart :(
-      </h3>
+      <>
+        <h3 style={{ color: "gray", marginTop: "300px" }}>
+          No product is added in the cart :(
+        </h3>
+
+        <Link style={{ textDecoration: "none" }} to="/">
+          <Button variant="contained" size="large" color="primary">
+            Continue shopping
+          </Button>
+        </Link>
+      </>
     );
   }
   return (
