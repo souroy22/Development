@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import "../styles/buynow.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faIndianRupeeSign } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "react-bootstrap";
+import { clearCart } from "../../Cart/action-creator";
 
 const Buynow = ({ reload }) => {
   const [totalPrice, setTotalPrice] = useState(0);
   const { cartProducts } = useSelector((state) => state.cart);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     calculatePrice();
@@ -22,6 +25,12 @@ const Buynow = ({ reload }) => {
     setTotalPrice(totalPrice);
     console.log("totalPrice", totalPrice);
   };
+
+  const handleBuynow = () => {
+     dispatch(clearCart());
+     alert('Successfully booked!');
+  }
+
   return (
     <div className="buynow-section">
       <div className="price-section">
@@ -60,6 +69,7 @@ const Buynow = ({ reload }) => {
         color="success"
         size="large"
         style={{ backgroundColor: "#EDC126", marginTop: "20px" }}
+        onClick={handleBuynow}
       >
         Buy Now
       </Button>

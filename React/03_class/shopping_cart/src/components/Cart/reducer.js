@@ -30,7 +30,10 @@ export const cart = (state=initialState, action) => {
                     state.cartProducts[indexx].count -= 1;
                }
                return {...state, cartProducts: state.cartProducts};
-     
+
+          case 'CLEAR_CART':
+               return {...state, cartProducts: []};
+               
           default:
                return state;
      }

@@ -28,3 +28,9 @@ export const decreaseCounter = (id) => (dispatch) => {
           console.log(`Error while adding product to the cart: ${error.message}`);
      }
 }
+
+export const clearCart = () => (dispatch) => {
+     dispatch({
+          type: 'CLEAR_CART'
+     });
+}
