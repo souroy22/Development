@@ -58,14 +58,14 @@ const NavbarComp = () => {
         fluid
         style={{ display: "flex", justifyContent: "space-between" }}
       >
-        <Navbar.Brand onClick={handleTitleClick}>Shoppy</Navbar.Brand>
+        <Navbar.Brand style={{cursor: 'pointer'}} onClick={handleTitleClick}>Shoppy</Navbar.Brand>
         <div
           style={{
             display: "flex",
-            width: "60%",
+            width: "50%",
             justifyContent: "space-between",
             marginRight: "20px",
-            flexWrap: "wrap",
+            flexWrap: "wrap"
           }}
         >
           <Autocomplete

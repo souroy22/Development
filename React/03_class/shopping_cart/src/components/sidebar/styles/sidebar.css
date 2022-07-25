@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@1,700&display=swap');
+
+.sidebar-section {
+     width: 400px;
+     margin-top: 70px;
+     position: fixed;
+     background-color: rgb(251 251 251);
+     height: 100vh;
+     left: 0;
+     padding: 20px;
+}
+
+.filters-header {
+     font-family: 'Noto Serif', serif;
+     font-size: 22px;
+     color: #46B2E0;
+}
+
+.filter-option {
+     display: flex;
+     justify-content: flex-start;
+     margin-top: 30px;
+     flex-direction: column;
+     text-align: left;
+}
+
+.category-option {
+     display: flex;
+     justify-content: space-between;
+     padding: 0 30px;
+     font-size: 18px;
+}
+
+.stars-ratings {
+     display: flex;
+     flex-direction: row;
+     justify-content: space-around;
+     margin-top: 20px;
+}
+
+.star-rate {
+     border: 1px solid rgb(190, 181, 181);
+     padding: 6px;
+     border-radius: 10px;
+     cursor: pointer;
+}
+
+.checkbox-input {
+     width: 17px;
+     height: 17px;
+     border-radius: 5px;
+}

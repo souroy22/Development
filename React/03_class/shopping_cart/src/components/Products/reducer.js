@@ -2,7 +2,10 @@ const initialState = {
   products: [],
   filteredProducts: [],
   shouldShowFilteredProducts: false,
-  wishlistProductsCount: 0
+  wishlistProductsCount: 0,
+  selectedCategories: [],
+  priceRange: [100, 700],
+  filterStarRating: 0
 };
 
 export const product = (state = initialState, action) => {
@@ -70,6 +73,41 @@ export const product = (state = initialState, action) => {
                }
           });
           return {...state, filteredProducts: filteredProds};
+
+      case 'ADD_CATEGORY':
+        return {...state, selectedCategories: [...state.selectedCategories, action.name]};
+
+      case 'REMOVE_CATEGORY':
+        state.selectedCategories = state.selectedCategories.filter(category => category !== action.name);
+        return {...state, selectedCategories: state.selectedCategories};
+
+      case 'SELECT_RANGE':
+        return {...state, priceRange: action.range};
+
+      case 'SELECT_STAR':
+        return {...state, filterStarRating: action.rating};
+
+      case 'APPLY_FILTER':
+        // filter by category
+        let newFilteredProduct = [];
+        if(state.selectedCategories.length){
+          newFilteredProduct = state.products.filter(product => state.selectedCategories.includes(product.category));
+        }
+
+        // filter by price range
+        if(state.selectedCategories.length){
+          newFilteredProduct = newFilteredProduct.filter(product => parseInt(product.price) >= state.priceRange[0] && parseInt(product.price) <= state.priceRange[1]);
+        }else{
+          newFilteredProduct = state.products.filter(product => parseInt(product.price) >= state.priceRange[0] && parseInt(product.price) <= state.priceRange[1]);
+        }
+
+        // filter by star rating
+        if(state.filterStarRating){
+          newFilteredProduct = newFilteredProduct.filter(product => parseFloat(product.rating.rate) >= parseInt(state.filterStarRating) && parseFloat(product.rating.rate) < parseInt(state.filterStarRating)+1);
+        }
+
+        return {...state, filteredProducts: newFilteredProduct, shouldShowFilteredProducts: true};
+
 
     default:
       return state;
