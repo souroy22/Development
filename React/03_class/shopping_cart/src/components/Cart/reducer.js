@@ -15,6 +15,17 @@ export const cart = (state=initialState, action) => {
                data['count'] = 1;
                return {...state, cartProducts: [...state.cartProducts, data]};
 
+          case 'MOVE_TO_CART':
+               const wishlistProduct = action.payload;
+               const cartProducts = state.cartProducts;
+               const i = cartProducts.findIndex(product => product.id === wishlistProduct.id);
+               if(i >= 0){
+                    cartProducts[i].count += 1;
+                    return {...state, cartProducts};
+               }
+               wishlistProduct['count'] = 1;
+               return {...state, cartProducts: [...state.cartProducts, wishlistProduct]};
+
           case 'INCREASE_COUNT':
                const index = state.cartProducts.findIndex(product => product.id === action.id);
                if(index >= 0){

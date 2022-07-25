@@ -20,6 +20,30 @@ export const setProducts = () => async (dispatch) => {
   }
 };
 
+export const sortProducts = (option) => async (dispatch) => {
+  try {
+    if(option === '0'){
+      dispatch({
+        type: 'SORT_BY_INCREASING_ORDER'
+      });
+    }else if(option === '1'){
+      dispatch({
+        type: 'SORT_BY_DECREASING_ORDER'
+      });
+    }else if(option === '2'){
+      dispatch({
+        type: 'SORT_BY_RATING_HIGH'
+      });
+    }else if(option === '3'){
+      dispatch({
+        type: 'SORT_BY_RATING_LOW'
+      });
+    }
+  } catch (error) {
+    console.log(`Error while sorting products list: ${error.message}`);
+  }
+}
+
 export const addToWishList = (id) => (dispatch) => {
   dispatch({
     type: "ADD_TO_WISHLIST",

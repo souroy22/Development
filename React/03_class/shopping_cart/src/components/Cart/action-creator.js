@@ -8,6 +8,22 @@ export const addToCart = (product) => (dispatch) => {
           console.log(`Error while adding product to the cart: ${error.message}`);
      }
 }
+
+export const moveToCart = (product) => (dispatch) => {
+     try {
+          dispatch({
+               type: 'MOVE_TO_CART',
+               payload: product
+          });
+          dispatch({
+               type: "REMOVE_FROM_WISHLIST",
+               id: product.id,
+          });
+     } catch (error) {
+          console.log(`Error while adding product to the cart: ${error.message}`);
+     }
+}
+
 export const increaseCounter = (id) => (dispatch) => {
      try {
           dispatch({

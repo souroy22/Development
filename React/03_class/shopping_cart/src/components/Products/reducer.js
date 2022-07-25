@@ -27,7 +27,38 @@ export const product = (state = initialState, action) => {
 
     case "SHOULD_SHOW_FILTERED_PRODUCTS":
       return {...state, shouldShowFilteredProducts: action.payload};
-    
+
+    case "SORT_BY_INCREASING_ORDER":
+      if(state.shouldShowFilteredProducts){
+        state.filteredProducts = state.filteredProducts.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+        return {...state, filteredProducts: state.filteredProducts };
+      }
+      state.products = state.products.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+      return {...state, products: state.products };
+
+    case "SORT_BY_DECREASING_ORDER":
+      if(state.shouldShowFilteredProducts){
+        state.filteredProducts = state.filteredProducts.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+        return {...state, filteredProducts: state.filteredProducts };
+      }
+      state.products = state.products.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+      return {...state, products: state.products };
+
+    case "SORT_BY_RATING_HIGH":
+      if(state.shouldShowFilteredProducts){
+        state.filteredProducts = state.filteredProducts.sort((a, b) => parseFloat(a.rating.rate) - parseFloat(b.rating.rate));
+        return {...state, filteredProducts: state.filteredProducts };
+      }
+      state.products = state.products.sort((a, b) => parseFloat(a.rating.rate) - parseFloat(b.rating.rate));
+      return {...state, products: state.products };
+
+    case "SORT_BY_RATING_LOW":
+      if(state.shouldShowFilteredProducts){
+        state.filteredProducts = state.filteredProducts.sort((a, b) => parseFloat(b.rating.rate) - parseFloat(a.rating.rate));
+        return {...state, filteredProducts: state.filteredProducts };
+      }
+      state.products = state.products.sort((a, b) => parseFloat(b.rating.rate) - parseFloat(a.rating.rate));
+      return {...state, products: state.products };
 
      case 'SET_FILTERED_DATA':
           const filteredProds = state.products.filter(product => {

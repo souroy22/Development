@@ -7,34 +7,18 @@ import NavbarComp from "./components/navbar/views/NavbarComp";
 import WishList from "./components/wishlist/views/WishList";
 
 const App = () => {
-  const [data, setProducts] = useState([]);
-  const [cart, setCart] = useState([]);
-
-  const saveInCart = (data) => {
-    
-  };
-
-  const getProductsData = async () => {
-    
-  };
-
-  useEffect(() => {
-    if(data.length){
-      return;
-    }
-    getProductsData();
-  }, [cart]);
 
   return (
     <div className="App">
       <NavbarComp />
+
       <Routes>
         <Route
           path="/"
           exact
-          element={<Products saveInCart={saveInCart} />}
+          element={<Products />}
         />
-        <Route path="/cart" exact element={<Cart cart={cart} />} />
+        <Route path="/cart" exact element={<Cart />} />
         <Route path="/wishlist" exact element={<WishList />} />
       </Routes>
     </div>

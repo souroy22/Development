@@ -18,7 +18,17 @@ import {
   filterData,
   setProducts,
   shouldShowFilteredProd,
+  sortProducts,
 } from "../../Products/action-creator";
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
+
+const top100Films = [
+  { label: 'Price low-high', lableId: '1' },
+  { label: 'Price high-low', lableId: '2' },
+  { label: 'Rating low-high', lableId: '1' },
+  { label: 'Rating high-low', lableId: '2' },
+];
 
 const NavbarComp = () => {
   const { cartProducts } = useSelector((state) => state.cart);
@@ -38,6 +48,10 @@ const NavbarComp = () => {
     }
   };
 
+  const handleSortClick = (event) => {
+      dispatch(sortProducts(event.target.dataset.optionIndex));
+  }
+
   return (
     <Navbar bg="light" expand="lg" fixed="top">
       <Container
@@ -48,12 +62,20 @@ const NavbarComp = () => {
         <div
           style={{
             display: "flex",
-            width: "600px",
+            width: "60%",
             justifyContent: "space-between",
             marginRight: "20px",
             flexWrap: "wrap",
           }}
         >
+          <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            options={top100Films}
+            sx={{ width: 200 }}
+            renderInput={(params) => <TextField {...params} label="Sort" />}
+            onChange={handleSortClick}
+          />
           {location.pathname === "/" ? (
             <>
                 <Link to="wishlist">
