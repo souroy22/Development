@@ -4,7 +4,7 @@ const initialState = {
   shouldShowFilteredProducts: false,
   wishlistProductsCount: 0,
   selectedCategories: [],
-  priceRange: [100, 700],
+  priceRange: [0, 1000],
   filterStarRating: 0
 };
 
@@ -40,6 +40,7 @@ export const product = (state = initialState, action) => {
       return {...state, products: state.products };
 
     case "SORT_BY_DECREASING_ORDER":
+      // if we search, then we have to show filtered products
       if(state.shouldShowFilteredProducts){
         state.filteredProducts = state.filteredProducts.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
         return {...state, filteredProducts: state.filteredProducts };
