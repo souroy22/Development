@@ -28,7 +28,6 @@ const Products = ({ saveInCart }) => {
 
   return (
     <>
-      <Link to="/cart">Go to Cart</Link>
       {!products || !products.length ? (
         <div className="product-section">
           {Array.from(new Array(20)).map((val, index) => (

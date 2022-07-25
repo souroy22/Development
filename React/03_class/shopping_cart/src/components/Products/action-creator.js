@@ -20,6 +20,30 @@ export const setProducts = () => async (dispatch) => {
   }
 };
 
+export const sortProducts = (option) => async (dispatch) => {
+  try {
+    if(option === '0'){
+      dispatch({
+        type: 'SORT_BY_INCREASING_ORDER'
+      });
+    }else if(option === '1'){
+      dispatch({
+        type: 'SORT_BY_DECREASING_ORDER'
+      });
+    }else if(option === '2'){
+      dispatch({
+        type: 'SORT_BY_RATING_HIGH'
+      });
+    }else if(option === '3'){
+      dispatch({
+        type: 'SORT_BY_RATING_LOW'
+      });
+    }
+  } catch (error) {
+    console.log(`Error while sorting products list: ${error.message}`);
+  }
+}
+
 export const addToWishList = (id) => (dispatch) => {
   dispatch({
     type: "ADD_TO_WISHLIST",
@@ -49,4 +73,42 @@ export const shouldShowFilteredProd = (show) => (dispatch) => {
     type: 'SHOULD_SHOW_FILTERED_PRODUCTS',
     payload: show
   })
+}
+
+export const handleCategoriesSelection = (isChecked, categoryName) => (dispatch) => {
+  try {
+    if(isChecked){
+      dispatch({
+        type: 'ADD_CATEGORY',
+        name: categoryName
+      });
+    }else{
+      dispatch({
+        type: 'REMOVE_CATEGORY',
+        name: categoryName
+      });
+    }
+  } catch (error) {
+    console.log(`Error while filtering category products list: ${error.message}`);
+  }
+} 
+
+export const applyFilter = () => (dispatch) => {
+  dispatch({
+    type: 'APPLY_FILTER'
+  });
+}
+
+export const selectRange = (range) => (dispatch) => {
+  dispatch({
+    type: 'SELECT_RANGE',
+    range
+  });
+}
+
+export const handleStarRating = (rating) => (dispatch) => {
+  dispatch({
+    type: 'SELECT_STAR',
+    rating
+  });
 }

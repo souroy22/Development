@@ -3,6 +3,7 @@ import {
   addToCart,
   decreaseCounter,
   increaseCounter,
+  moveToCart,
 } from "../../Cart/action-creator";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "@mui/material/Card";
@@ -12,7 +13,11 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart, faIndianRupeeSign } from "@fortawesome/free-solid-svg-icons";
+import {
+  faHeart,
+  faIndianRupeeSign,
+  faStar,
+} from "@fortawesome/free-solid-svg-icons";
 import { addToWishList, removeFromWishList } from "../action-creator";
 import { useLocation } from "react-router-dom";
 
@@ -40,7 +45,13 @@ const Product = ({ product, saveInCart, isCartPage, setReload, reload }) => {
   };
 
   return (
-    <Card sx={{ width: 365, margin: "10px", height: "400px" }}>
+    <Card sx={{ width: 365, margin: "10px", height: "400px", position: 'relative' }}>
+      <span style={{position: 'absolute', right: 0, backgroundColor: '#120E43', color: 'white', padding: '0 5px', borderRadius: '10px'}}>
+        <FontAwesomeIcon style={{ color: "yellow" }} icon={faStar} />
+        <FontAwesomeIcon style={{ color: "yellow" }} icon={faStar} />
+        <FontAwesomeIcon style={{ color: "yellow" }} icon={faStar} />
+        {product.rating.rate}
+      </span>
       <CardMedia
         component="img"
         alt="green iguana"
@@ -109,9 +120,22 @@ const Product = ({ product, saveInCart, isCartPage, setReload, reload }) => {
         <>
           <Button
             variant="contained"
+            style={{
+              backgroundColor: isAddedInCart(product.id)
+                ? "#758283"
+                : "#3DBE29",
+              marginTop: "-60px",
+            }}
+            size="large"
+            onClick={() => dispatch(moveToCart(product))}
+          >
+            Move to cart
+          </Button>
+          <Button
+            variant="contained"
             color="success"
             size="large"
-            style={{ backgroundColor: "#E21717" }}
+            style={{ backgroundColor: "#E21717", marginTop: "-10px" }}
             onClick={() => dispatch(removeFromWishList(product.id))}
           >
             Remove from wishlist
