@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
-import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCartShopping,
@@ -38,8 +36,7 @@ const NavbarComp = () => {
 
   const dispatch = useDispatch();
 
-  const { products, shouldShowFilteredProducts, filteredProducts } =
-    useSelector((state) => state.product);
+  const { shouldShowFilteredProducts } = useSelector((state) => state.product);
 
   const handleTitleClick = () => {
     if (shouldShowFilteredProducts) {
@@ -49,7 +46,7 @@ const NavbarComp = () => {
   };
 
   const handleSortClick = (event) => {
-      dispatch(sortProducts(event.target.dataset.optionIndex));
+    dispatch(sortProducts(event.target.dataset.optionIndex));
   }
 
   return (
@@ -58,7 +55,7 @@ const NavbarComp = () => {
         fluid
         style={{ display: "flex", justifyContent: "space-between" }}
       >
-        <Navbar.Brand style={{cursor: 'pointer'}} onClick={handleTitleClick}>Shoppy</Navbar.Brand>
+        <Navbar.Brand style={{ cursor: 'pointer' }} onClick={handleTitleClick}>Shoppy</Navbar.Brand>
         <div
           style={{
             display: "flex",
@@ -78,23 +75,23 @@ const NavbarComp = () => {
           />
           {location.pathname === "/" ? (
             <>
-                <Link to="wishlist">
-                  <Button
-                    variant="contained"
-                    style={{
-                      fontSize: "20px",
-                      fontWeight: "bolder",
-                      width: "137px",
-                      color: "#D82E2F",
-                    }}
-                  >
-                    <FontAwesomeIcon
-                      icon={faHeartCircleCheck}
-                      style={{ width: "30px", height: "30px" }}
-                    />
-                    Wishlist
-                  </Button>
-                </Link>
+              <Link to="wishlist">
+                <Button
+                  variant="contained"
+                  style={{
+                    fontSize: "20px",
+                    fontWeight: "bolder",
+                    width: "137px",
+                    color: "#D82E2F",
+                  }}
+                >
+                  <FontAwesomeIcon
+                    icon={faHeartCircleCheck}
+                    style={{ width: "30px", height: "30px" }}
+                  />
+                  Wishlist
+                </Button>
+              </Link>
               <Form
                 className="d-flex"
                 onSubmit={(event) => {
