@@ -1,0 +1,19 @@
+.product-section {
+     display: flex;
+     flex-direction: row;
+     flex-wrap: wrap;
+     margin: auto;
+     text-align: center;
+     margin-top: 166px;
+     justify-content: center;
+     width: 90%;
+     margin-bottom: 50px;
+}
+
+.cart-counter {
+     /* border: 1px solid; */
+     padding: 5px 10px;
+     margin: 0 10px;
+     font-weight: bold;
+     font-size: 21px;
+}

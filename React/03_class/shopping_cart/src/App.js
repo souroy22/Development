@@ -1,26 +1,21 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import axios from "axios";
-import RouterComp from "./RouterComp";
+import Products from "./components/Products/views/Products";
+import Cart from "./components/Cart/views/Cart";
+import { Routes, Route } from "react-router-dom";
+import NavbarComp from "./components/navbar/views/NavbarComp";
+import WishList from "./components/wishlist/views/WishList";
 
 const App = () => {
   const [data, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
 
   const saveInCart = (data) => {
-    const indx = cart.findIndex(product => product.id === data.id);
-    if(indx >= 0){
-      cart[indx].count += 1;
-      setCart(cart);
-      return;
-    }
-    data['count'] = 1;
-    setCart([...cart, data]);
+    
   };
 
   const getProductsData = async () => {
-    const response = await axios.get("https://fakestoreapi.com/products");
-    setProducts(response.data);
+    
   };
 
   useEffect(() => {
@@ -32,7 +27,16 @@ const App = () => {
 
   return (
     <div className="App">
-      <RouterComp products={data} saveInCart={saveInCart} cart={cart} />
+      <NavbarComp />
+      <Routes>
+        <Route
+          path="/"
+          exact
+          element={<Products saveInCart={saveInCart} />}
+        />
+        <Route path="/cart" exact element={<Cart cart={cart} />} />
+        <Route path="/wishlist" exact element={<WishList />} />
+      </Routes>
     </div>
   );
 };
