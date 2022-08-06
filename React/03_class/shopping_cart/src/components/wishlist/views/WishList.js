@@ -7,9 +7,7 @@ import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 
 const WishList = () => {
-  const { products, wishlistProductsCount } = useSelector(
-    (state) => state.product
-  );
+  const { products, wishlistProductsCount } = useSelector((state) => state.product);
 
   const navigate = useNavigate();
 

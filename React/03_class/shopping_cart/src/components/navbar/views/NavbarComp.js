@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
-import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCartShopping,
@@ -18,7 +16,17 @@ import {
   filterData,
   setProducts,
   shouldShowFilteredProd,
+  sortProducts,
 } from "../../Products/action-creator";
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
+
+const top100Films = [
+  { label: 'Price low-high', lableId: '1' },
+  { label: 'Price high-low', lableId: '2' },
+  { label: 'Rating low-high', lableId: '1' },
+  { label: 'Rating high-low', lableId: '2' },
+];
 
 const NavbarComp = () => {
   const { cartProducts } = useSelector((state) => state.cart);
@@ -28,8 +36,7 @@ const NavbarComp = () => {
 
   const dispatch = useDispatch();
 
-  const { products, shouldShowFilteredProducts, filteredProducts } =
-    useSelector((state) => state.product);
+  const { shouldShowFilteredProducts } = useSelector((state) => state.product);
 
   const handleTitleClick = () => {
     if (shouldShowFilteredProducts) {
@@ -38,41 +45,53 @@ const NavbarComp = () => {
     }
   };
 
+  const handleSortClick = (event) => {
+    dispatch(sortProducts(event.target.dataset.optionIndex));
+  }
+
   return (
     <Navbar bg="light" expand="lg" fixed="top">
       <Container
         fluid
         style={{ display: "flex", justifyContent: "space-between" }}
       >
-        <Navbar.Brand onClick={handleTitleClick}>Shoppy</Navbar.Brand>
+        <Navbar.Brand style={{ cursor: 'pointer' }} onClick={handleTitleClick}>Shoppy</Navbar.Brand>
         <div
           style={{
             display: "flex",
-            width: "600px",
+            width: "50%",
             justifyContent: "space-between",
             marginRight: "20px",
-            flexWrap: "wrap",
+            flexWrap: "wrap"
           }}
         >
+          <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            options={top100Films}
+            sx={{ width: 200 }}
+            renderInput={(params) => <TextField {...params} label="Sort" />}
+            onChange={handleSortClick}
+          />
           {location.pathname === "/" ? (
             <>
-                <Link to="wishlist">
-                  <Button
-                    variant="contained"
-                    style={{
-                      fontSize: "20px",
-                      fontWeight: "bolder",
-                      width: "137px",
-                      color: "#D82E2F",
-                    }}
-                  >
-                    <FontAwesomeIcon
-                      icon={faHeartCircleCheck}
-                      style={{ width: "30px", height: "30px" }}
-                    />
-                    Wishlist
-                  </Button>
-                </Link>
+              <Link to="wishlist">
+                <Button
+                  variant="contained"
+                  style={{
+                    fontSize: "20px",
+                    fontWeight: "bolder",
+                    width: "137px",
+                    color: "#D82E2F",
+                  }}
+                >
+                  <FontAwesomeIcon
+                    icon={faHeartCircleCheck}
+                    style={{ width: "30px", height: "30px" }}
+                  />
+                  Wishlist
+                </Button>
+              </Link>
               <Form
                 className="d-flex"
                 onSubmit={(event) => {
